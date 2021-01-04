@@ -19,9 +19,6 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <!-- VueJs -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-
 </head>
 <body>
 
@@ -65,27 +62,40 @@
 
             </div>
 
-            <div class="col-sm-8">
+            <div class="col-sm-8" id="formulario">
 
                 <h2>Formulario</h2>
                 <br>
-                <div class="mb-3" id="formulario">
-                    <label for="exampleFormControlInput1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                  </div>
-                  <div class="mb-3">
-                    <label for="exampleFormControlTextarea1"  class="form-label">Contenido</label>
-                    <textarea class="form-control" v-model="contenido" id="exampleFormControlTextarea1" rows="3" placeholder="jeje"></textarea>
-
+                <form v-on:submit.prevent="alertas">
+                    <div class="mb-3">
                     
-                    <br>
-
+                        <label for="exampleFormControlInput1" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1" v-model="correo" placeholder="name@example.com">
+    
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1"  class="form-label">Contenido</label>
+                        <textarea class="form-control" v-model="contenido" id="exampleFormControlTextarea1" rows="3" placeholder="..."></textarea>
+    
+                        
+                        <br>
+    
                         <div class="d-grid gap-2">
-                        <button class="btn btn-success btn-lg btn-block" type="button">Enviar</button>
-                      </div>
+                            <input type="submit" class="btn btn-success btn-lg btn-block" value="Guardar">
+                        </div>
+    
+                        
+                    </div>
+                </form>
 
-                      <h1 v-if="correo>=1" >{{ correo }}</h1>
+               <div class="alert alert-success" role="alert" v-if="lleno == 1">
+                    A simple success alert—check it out!
                 </div>
+
+                <div class="alert alert-danger" role="alert"  v-if="lleno == 2">
+                    A simple danger alert—check it out!
+                </div>
+
                 
             </div>
         </div>
@@ -236,6 +246,9 @@
  
     
 </body>
+
+    <!-- VueJs -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
 <script src="public/js/index.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap"></script>

@@ -14,19 +14,33 @@ var formulario = new Vue({
   data: {
     correo:'',
     contenido:'',
-    alertaExito:'QUE CHIDO!',
-    alertaError:'Llene todos los formularios',
-  },
-  computed:{
-    alerta(){
-      if ((this.correo.length>=1)&&(this.contenido.length>=1)) {
-        return this.alertaExito;
-      } else {
-        return this.alertaError;
-      }     
+    
+    //0=null, 1=lleno, 2=vacio
+    lleno:0,
 
-    },
-  }
+
+  },
+  filter:{
+
+
+  },
+  watch:{
+ 
+    
+
+  },
+  methods: {
+    alertas(){
+      if (this.correo.length==0 && this.contenido.length==0  ) {
+        this.lleno=2;
+        
+      } else {
+        this.lleno=1;
+        
+      }
+
+    }
+  },
 })
 // 
 
@@ -43,24 +57,3 @@ function iniciarMap(){
 
 
 }
-
-
-$(function(){
-    $("#example-form").submit(function() {
-      var inputVal = $("#inputExample").val();
-      $(document).trigger("clear-alert-id.example");
-      if (inputVal.length < 1) {
-        $(document).trigger("set-alert-id-example", [
-          {
-            "message": "No lleno todo los datos",
-            "priority": "error"
-          },
-          {
-            "message": "This is an info alert",
-            "priority": "info"
-          }
-        ]);
-      }
-    });
-  });
-
